@@ -1,0 +1,17 @@
+/* Penyesuaian agar peta terlihat bagus di dalam card */
+#map {
+  height: 450px;
+  width: 100%;
+}
+
+/* Menambahkan scroll pada daftar jika terlalu panjang */
+.scrollable-list {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Gaya untuk menyorot item daftar saat marker di peta diklik */
+.highlight {
+  background-color: #dbeafe !important; /* Warna biru muda */
+  font-weight: bold;
+}

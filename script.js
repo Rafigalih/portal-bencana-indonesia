@@ -12,16 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlayLayers = { "Gempa Bumi": gempaLayer, "Gunung Api": gunungApiLayer };
   L.control.layers(null, overlayLayers).addTo(map);
 
-  // --- FUNGSI BARU UNTUK MENENTUKAN GAYA MARKER ---
   function getGayaGempa(magnitudo) {
     let warna = 'green';
-    if (magnitudo >= 5.0) {
-      warna = '#d9534f'; // Merah
-    } else if (magnitudo >= 4.0) {
-      warna = '#f0ad4e'; // Oranye
-    }
+    if (magnitudo >= 5.0) { warna = '#d9534f'; } 
+    else if (magnitudo >= 4.0) { warna = '#f0ad4e'; }
     return {
-      radius: magnitudo * 2, // Ukuran lingkaran sebanding dengan magnitudo
+      radius: magnitudo * 2,
       fillColor: warna,
       color: "#000",
       weight: 1,
@@ -42,21 +38,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const lng = parseFloat(coords[1]);
         const magnitudo = parseFloat(gempa.Magnitude);
 
-        // Bagian daftar teks (tidak berubah)
-        daftarHtml += `<a href="#" class="list-group-item list-group-item-action small gempa-item" data-lat="${lat}" data-lng="${lng}">
-                         <b>M ${magnitudo}</b> - ${gempa.Wilayah}
-                         <div class="text-muted" style="font-size: 0.8em;">${gempa.Tanggal} | ${gempa.Jam}</div>
-                       </a>`;
+        // --- PERUBAHAN UTAMA DI SINI ---
+        // Membuat struktur HTML yang lebih kompleks untuk setiap item gempa
+        daftarHtml += `
+          <a href="#" class="list-group-item list-group-item-action gempa-item" data-lat="${lat}" data-lng="${lng}">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">M ${magnitudo}</h5>
+              <small class="text-muted">${gempa.Tanggal}</small>
+            </div>
+            <p class="mb-1">${gempa.Wilayah}</p>
+            <small class="text-muted">Kedalaman: ${gempa.Kedalaman}</small>
+          </a>`;
 
-        // --- LOGIKA MARKER PETA YANG DIPERBARUI ---
-        // Gunakan L.circleMarker dengan gaya dari fungsi kita
         L.circleMarker([lat, lng], getGayaGempa(magnitudo))
           .addTo(gempaLayer)
           .bindPopup(`<b>M ${magnitudo}</b><br>${gempa.Wilayah}`);
       });
       daftarGempaDiv.innerHTML = daftarHtml;
 
-      // Bagian interaktivitas daftar (tidak berubah)
       const gempaItems = document.querySelectorAll('.gempa-item');
       gempaItems.forEach(item => {
         item.addEventListener('click', function(e) {
@@ -68,17 +67,25 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-  // Ambil Data Gunung Api (tidak ada perubahan)
+  // Ambil Data Gunung Api
   fetch('/api/gunungapi')
     .then(response => response.json())
-    // ... (kode untuk gunung api tetap sama persis)
     .then(data => {
-        gunungApiLayer.clearLayers();
-        let gunungHtml = '';
-        data.data.forEach(gunung => {
-            gunungHtml += `<div class="list-group-item list-group-item-action"><b>${gunung.nama}</b><span class="badge bg-danger float-end">${gunung.level_text}</span></div>`;
-            L.marker(gunung.coordinates).addTo(gunungApiLayer).bindPopup(`<b>${gunung.nama}</b><br>Status: ${gunung.level_text}`);
-        });
-        infoGunungApiDiv.innerHTML = gunungHtml;
+      gunungApiLayer.clearLayers();
+      let gunungHtml = '';
+      data.data.forEach(gunung => {
+        // --- PERUBAHAN UTAMA DI SINI ---
+        // Membuat struktur HTML yang lebih kompleks untuk setiap item gunung api
+        gunungHtml += `
+          <div class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">${gunung.nama}</h5>
+              <span class="badge bg-danger rounded-pill">${gunung.level_text}</span>
+            </div>
+          </div>`;
+        L.marker(gunung.coordinates).addTo(gunungApiLayer)
+          .bindPopup(`<b>${gunung.nama}</b><br>Status: ${gunung.level_text}`);
+      });
+      infoGunungApiDiv.innerHTML = gunungHtml;
     });
 });

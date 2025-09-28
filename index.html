@@ -4,27 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Bencana Indonesia</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    body { font-family: sans-serif; margin: 2em; }
-    #map { height: 400px; margin-bottom: 1em; }
+    /* Penyesuaian agar peta terlihat bagus di dalam card */
+    #map {
+      height: 450px;
+      width: 100%;
+    }
+    /* Menambahkan scroll pada daftar jika terlalu panjang */
+    .scrollable-list {
+      max-height: 250px;
+      overflow-y: auto;
+    }
   </style>
 </head>
-<body>
-  <h1>Peta Bencana Terkini</h1>
-  <div id="map"></div>
+<body class="bg-light">
 
-  <h2>Daftar 15 Gempa Dirasakan Terkini</h2>
-  <div id="daftar-gempa">Memuat daftar...</div>
+  <div class="container my-4">
+    <div class="text-center mb-4">
+      <h1 class="display-5">Portal Pemantauan Bencana</h1>
+      <p class="lead">Data Real-time Bencana Alam di Indonesia</p>
+    </div>
 
-  <h2 style="margin-top: 2em;">Status Gunung Api Terpantau</h2>
-  <div id="info-gunungapi">Memuat data...</div>
+    <div class="row">
+      
+      <div class="col-lg-8">
+        <div class="card shadow-sm mb-4">
+          <div class="card-header fw-bold">
+            Peta Bencana Terkini
+          </div>
+          <div class="card-body p-0">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
 
-  <h2 style="margin-top: 2em;">Informasi Resmi dari BMKG</h2>
-  
-  <a class="twitter-timeline" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">Tweets by infoBMKG</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <div class="col-lg-4">
+        <div class="card shadow-sm mb-4">
+          <div class="card-header fw-bold">
+            Daftar Gempa Dirasakan
+          </div>
+          <div id="daftar-gempa" class="list-group list-group-flush scrollable-list">
+            <p class="list-group-item">Memuat daftar...</p>
+          </div>
+        </div>
+
+        <a href="/history.html" class="btn btn-primary w-100">Lihat Semua Riwayat Gempa &raquo;</a>
+      </div>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

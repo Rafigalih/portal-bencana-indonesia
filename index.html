@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Bencana Indonesia</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    #map { height: 400px; margin-bottom: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Peta Bencana Terkini</h1>
+  <div id="map"></div>
+
+  <h2>Daftar 15 Gempa Dirasakan Terkini</h2>
+  <div id="daftar-gempa">Memuat daftar...</div>
+
+  <h2 style="margin-top: 2em;">Status Gunung Api Terpantau</h2>
+  <div id="info-gunungapi">Memuat data...</div>
+
+  <h2 style="margin-top: 2em;">Informasi Resmi dari BMKG</h2>
+  
+  <a class="twitter-timeline" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">Tweets by infoBMKG</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

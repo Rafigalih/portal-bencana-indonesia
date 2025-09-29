@@ -14,8 +14,9 @@
 .highlight {
   background-color: #dbeafe !important; /* Warna biru muda */
   font-weight: bold;
-
-.gempa-item.dekat {
-  border: 2px solid #d9534f; /* Border merah tebal */
 }
+
+/* Gaya untuk menandai gempa yang dekat dengan lokasi pengguna */
+.gempa-item.dekat {
+  border: 2px solid #d9534f !important; /* Border merah tebal */
 }

@@ -12,7 +12,6 @@
 
 </head>
 <body class="bg-light">
-
   <div class="container my-4">
     <div class="text-center mb-4">
       <h1 class="display-5">Portal Pemantauan Bencana</h1>
@@ -21,46 +20,35 @@
 
     <div class="row">
       <div class="col-lg-8">
-        <div class="card shadow-sm mb-4">
-          <div class="card-header fw-bold">Peta Bencana Terkini</div>
-          <div class="card-body p-0">
-            <div id="map"></div>
-          </div>
         </div>
-        <div class="card shadow-sm">
-          <div class="card-header fw-bold">Informasi Resmi dari BMKG</div>
-          <div class="card-body">
-            <a class="twitter-timeline" data-height="400" href="https://twitter.com/infoBMKG?ref_src=twsrc%5Etfw">Tweets by infoBMKG</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
-        </div>
-      </div>
 
       <div class="col-lg-4">
         <div class="card shadow-sm mb-4">
-          <div class="card-header fw-bold">Daftar Gempa Dirasakan</div>
-          <div id="daftar-gempa" class="list-group list-group-flush scrollable-list">
-            <p class="list-group-item">Memuat daftar...</p>
+          <div class="card-header fw-bold">
+            📍 Pengaturan Lokasi Saya
+          </div>
+          <div class="card-body">
+            <label for="lokasi-pengguna" class="form-label small">Pilih Lokasi Anda:</label>
+            <select id="lokasi-pengguna" class="form-select">
+              <option value="">-- Tidak Ada --</option>
+              </select>
+            <div class="form-text small">Gempa dalam radius 250km dari lokasi ini akan ditandai.</div>
           </div>
         </div>
+
         <div class="card shadow-sm mb-4">
-          <div class="card-header fw-bold">Status Gunung Api</div>
-          <div id="info-gunungapi" class="list-group list-group-flush" style="max-height: 200px; overflow-y: auto;">
-            <p class="list-group-item">Memuat data...</p>
           </div>
-        </div>
+
+        <div class="card shadow-sm mb-4">
+           </div>
+
         <div class="card shadow-sm">
-          <div class="card-header fw-bold">Prakiraan Cuaca (Bekasi)</div>
-          <div id="info-cuaca" class="list-group list-group-flush">
-            <p class="list-group-item">Memuat data...</p>
           </div>
-        </div>
+
         <a href="/history.html" class="btn btn-primary mt-4 w-100">Lihat Semua Riwayat Gempa &raquo;</a>
       </div>
     </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="script.js"></script> 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
